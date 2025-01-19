@@ -1,4 +1,4 @@
-<div class="event-card" *ngIf="event">
+<div class="event-card" @If(event)>
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ event.title }}</mat-card-title>
@@ -6,7 +6,7 @@
         event.date | date : "fullDate"
       }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="event.imageUrl" alt="Event image" />
+    <!-- <img mat-card-image [src]="event.imageUrl" alt="Event image" /> -->
     <mat-card-content>
       <p>{{ event.details }}</p>
       <p><strong>Locație:</strong> {{ event.location }}</p>

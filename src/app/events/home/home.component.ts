@@ -14,9 +14,15 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
   city: string = '';
-  event: Event | undefined;
+  event: Event;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private eventService: EventService
+  ) {
+    this.event = this.eventService.defaultEvent;
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
@@ -26,6 +32,12 @@ export class HomeComponent implements OnInit {
       );
       this.city = params.get('city')!;
       console.log('City:', this.city);
+
+      if (this.city === 'pitesti') {
+        this.eventService.getPitestiEvent();
+      } else if (this.city === 'bucuresti') {
+        this.eventService.getBucurestiEvent();
+      }
     });
   }
 }
