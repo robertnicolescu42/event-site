@@ -5,8 +5,23 @@ html {
   @include mat.theme(
     (
       color: mat.$violet-palette,
-      typography: Roboto,
+      typography: (
+        plain-family: Roboto,
+        bold-weight: 1100,
+        medium-weight: 800,
+        regular-weight: 600,
+      ),
       density: 0,
     )
   );
+}
+
+body {
+  font-family: "Gill Sans", sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+mat-toolbar {
+  border-radius: 10px;
 }

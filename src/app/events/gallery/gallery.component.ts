@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-gallery',
-  imports: [],
+  imports: [MatCardModule],
   templateUrl: './gallery.component.html',
-  styleUrl: './gallery.component.scss'
+  styleUrl: './gallery.component.scss',
 })
-export class GalleryComponent {
-
-}
+export class GalleryComponent {}
