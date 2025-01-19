@@ -31,9 +31,9 @@ export class HomeComponent implements OnInit {
       console.log('City:', this.city);
 
       if (this.city === 'pitesti') {
-        this.eventService.getPitestiEvent();
+        this.event = this.eventService.getPitestiEvent();
       } else if (this.city === 'bucuresti') {
-        this.eventService.getBucurestiEvent();
+        this.event = this.eventService.getBucurestiEvent();
       }
     });
   }
