@@ -1,4 +1,5 @@
-<div class="event-card" @If(event)>
+@if(event) {
+<div class="event-card">
   <mat-card>
     <mat-card-header>
       <mat-card-title>{{ event.title }}</mat-card-title>
@@ -19,4 +20,7 @@
       </button>
     </mat-card-actions>
   </mat-card>
+
+  <app-contact></app-contact>
 </div>
+}
