@@ -5,17 +5,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ContactComponent } from '../contact/contact.component';
+import { CountdownComponent } from '../countdown/countdown.component';
 
 @Component({
   selector: 'app-home',
-  imports: [MatCardModule, MatButtonModule, CommonModule, ContactComponent],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    CommonModule,
+    ContactComponent,
+    CountdownComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
 })
 export class HomeComponent implements OnInit {
   city: string = '';
-  // change event to a signal
   event: Event;
 
   constructor(

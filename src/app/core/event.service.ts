@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 export interface Event {
   id: string;
   title: string;
-  date: string;
+  date: Date;
   location: string;
   details: string;
   cost: number;
@@ -19,7 +19,7 @@ export class EventService {
     {
       id: '1',
       title: 'Petrecerea 1',
-      date: '2025-01-25T20:00:00',
+      date: new Date('2025-01-25T20:00:00'),
       location: 'Pitesti, Club XYZ',
       details: 'O petrecere pentru socializare și distracție!',
       cost: 50,
@@ -29,7 +29,7 @@ export class EventService {
     {
       id: '2',
       title: 'Petrecerea 2',
-      date: '2025-02-25T20:00:00',
+      date: new Date('2025-02-25T20:00:00'),
       location: 'Bucuresti, Club ABC',
       details: 'O petrecere pentru socializare și distracție!',
       cost: 50,
@@ -41,7 +41,7 @@ export class EventService {
   public defaultEvent: Event = {
     id: '0',
     title: 'Petrecerea 0',
-    date: '2025-01-25T20:00:00',
+    date: new Date('2025-01-25T20:00:00'),
     location: 'Pitesti, Club XYZ',
     details: 'O petrecere pentru socializare și distracție!',
     cost: 50,
