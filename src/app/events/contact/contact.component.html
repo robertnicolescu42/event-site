@@ -52,12 +52,12 @@
             Trebuie să acceptați termenii GDPR pentru a trimite formularul.
           </span>
         </div>
+        
+        <!-- Checkbox evenimente viitoare -->
+        <mat-checkbox formControlName="newsletter">
+          Doresc să fiu informat despre evenimentele viitoare
+        </mat-checkbox>
       </div>
-
-      <!-- Checkbox evenimente viitoare -->
-      <mat-checkbox formControlName="subscribe">
-        Doresc să fiu informat despre evenimentele viitoare
-      </mat-checkbox>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="onSubmit()" [disabled]="!contactForm.valid">
