@@ -14,10 +14,3 @@ $theme: mat.define-light-theme(
 
 @include mat.all-component-typographies($theme);
 @include mat.all-component-themes($theme);
-
-// global styles
-.container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}

@@ -1,52 +1,31 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Contact Us</mat-card-title>
-    <!-- <mat-card-subtitle>We'd love to hear from you!</mat-card-subtitle> -->
-  </mat-card-header>
-
-  <mat-card-content>
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" />
-        <mat-error
-          *ngIf="formControls.name.invalid && formControls.name.touched"
-        >
-          Name is required
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" />
-        <mat-error
-          *ngIf="formControls.email.invalid && formControls.email.touched"
-        >
-          A valid email is required
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Phone (Optional)</mat-label>
-        <input matInput formControlName="phone" />
-      </mat-form-field>
-
-      <div class="form-actions">
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="contactForm.invalid"
-        >
-          Submit
-        </button>
+<div class="container">
+  <mat-card class="example-card" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Formular de Înscriere</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div [formGroup]="contactForm">
+        <mat-form-field>
+          <input matInput required placeholder="Nume" formControlName="name" />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            required
+            placeholder="Email"
+            formControlName="email"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Telefon" formControlName="phone" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Mesaj" formControlName="message" />
+        </mat-form-field>
       </div>
-    </form>
-  </mat-card-content>
-
-  <mat-card-footer *ngIf="submitted">
-    <div class="submission-message">
-      Thank you for contacting us! We will get back to you soon.
-    </div>
-  </mat-card-footer>
-</mat-card>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Trimite</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

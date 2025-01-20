@@ -16,6 +16,7 @@ html {
   );
 }
 
+// global styles
 body {
   font-family: "Gill Sans", sans-serif;
   font-size: 20px;
@@ -24,4 +25,10 @@ body {
 
 mat-toolbar {
   border-radius: 10px;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
