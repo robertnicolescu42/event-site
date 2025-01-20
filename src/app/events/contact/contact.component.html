@@ -6,7 +6,12 @@
     <mat-card-content>
       <div [formGroup]="contactForm">
         <mat-form-field>
-          <input matInput required placeholder="Nume" formControlName="name" />
+          <input
+            matInput
+            required
+            placeholder="Nume și Prenume"
+            formControlName="name"
+          />
         </mat-form-field>
         <mat-form-field>
           <input
@@ -17,15 +22,47 @@
           />
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Telefon" formControlName="phone" />
+          <input
+            matInput
+            placeholder="Telefon (optional)"
+            formControlName="phone"
+          />
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Mesaj" formControlName="message" />
+          <input
+            matInput
+            placeholder="Mesaj (optional)"
+            formControlName="message"
+          />
         </mat-form-field>
+        <!-- Checkbox GDPR -->
+        <mat-checkbox formControlName="gdpr">
+          Sunt de acord cu prelucrarea datelor mele personale conform
+          <a href="https://gdpr-info.eu/" target="_blank"
+            >Regulamentului GDPR</a
+          >
+        </mat-checkbox>
+        <div
+          *ngIf="
+            contactForm.get('gdpr')?.invalid && contactForm.get('gdpr')?.touched
+          "
+          class="error"
+        >
+          <span>
+            Trebuie să acceptați termenii GDPR pentru a trimite formularul.
+          </span>
+        </div>
       </div>
+
+      <!-- Checkbox evenimente viitoare -->
+      <mat-checkbox formControlName="subscribe">
+        Doresc să fiu informat despre evenimentele viitoare
+      </mat-checkbox>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Trimite</button>
+      <button mat-button (click)="onSubmit()" [disabled]="!contactForm.valid">
+        Trimite
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>
