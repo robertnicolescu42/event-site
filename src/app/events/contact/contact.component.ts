@@ -41,6 +41,7 @@ export class ContactComponent {
       ],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.pattern('^[0-9]{10}$')],
+      gender: [''],
       message: [''],
       gdpr: [false, Validators.requiredTrue],
       newsletter: [false],
