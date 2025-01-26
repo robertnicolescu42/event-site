@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventService, Event } from '../../core/event.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ContactComponent } from '../contact/contact.component';
 import { CountdownComponent } from '../countdown/countdown.component';
@@ -26,7 +26,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private eventService: EventService
+    private eventService: EventService,
+    private router: Router
   ) {
     this.event = this.eventService.defaultEvent;
   }
@@ -36,10 +37,11 @@ export class HomeComponent implements OnInit {
       this.city = params.get('city')!;
       console.log('City:', this.city);
 
-      if (this.city === 'pitesti') {
-        this.event = this.eventService.getPitestiEvent();
-      } else if (this.city === 'bucuresti') {
+      if (this.city === 'bucuresti') {
         this.event = this.eventService.getBucurestiEvent();
+      } else {
+        this.router.navigate(['/home/pitesti']);
+        this.event = this.eventService.getPitestiEvent();
       }
     });
   }
