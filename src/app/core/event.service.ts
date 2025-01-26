@@ -19,7 +19,7 @@ export class EventService {
     {
       id: '1',
       title: 'Petrecerea 1',
-      date: new Date('2025-01-25T20:00:00'),
+      date: new Date('2025-01-30T20:00:00'),
       location: 'Pitesti, Club XYZ',
       details: 'O petrecere pentru socializare și distracție!',
       cost: 50,
@@ -29,7 +29,7 @@ export class EventService {
     {
       id: '2',
       title: 'Petrecerea 2',
-      date: new Date('2025-02-25T20:00:00'),
+      date: new Date('2025-01-26T13:00:00'),
       location: 'Bucuresti, Club ABC',
       details: 'O petrecere pentru socializare și distracție!',
       cost: 50,
