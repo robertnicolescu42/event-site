@@ -64,22 +64,18 @@ export const getLatestEvent = functions.https.onRequest(async (req, res) => {
         return;
       }
 
-      const event = querySnapshot.docs[0].data();
-      res.status(200).json(event);
+      const eventDoc = querySnapshot.docs[0];
+      const eventData = eventDoc.data();
+
+      const attendeesRef = eventDoc.ref.collection('attendees');
+      const countSnapshot = await attendeesRef.count().get();
+      const attendeeCount = countSnapshot.data()?.count || 0;
+
+      // Return the event data with the attendee count
+      res.status(200).json({ ...eventData, attendeeCount });
     } catch (error) {
       console.error('Error fetching event:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
   });
 });
-
-/* the next method should take an object that has
- * email, name, phone (optional), message (optional), newsletter (boolean - optional)
- * and do the following: 1. add the object to the users collection (if it doesn't exist - match name & mail)
- * 2. increase the counter of the event that the user is registering to (in the events collection)
- * 3. in case the user has the newsletter flag set to true, add the user to the newsletter collection (if he's not already there)
- *
- *
- *
- *
- */
