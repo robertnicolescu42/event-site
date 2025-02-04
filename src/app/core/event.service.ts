@@ -14,6 +14,12 @@ export interface Event {
   attendees?: number;
 }
 
+export interface IncomingEvent {
+  location: string;
+  date: string;
+  attendeeCount: number;
+}
+
 export interface EventRegistration {
   id: string;
   name: string;
@@ -76,12 +82,12 @@ export class EventService {
     const url = `${api.getLatestEventUrl}?location=pitesti`;
 
     console.log('🚀 ~ EventService ~ getPitestiEvent ~ url:', url);
-    // return this.http.get<Event>(url).pipe(
+    // return this.http.get<IncomingEvent>(url).pipe(
     //   map((data) => {
     //     return {
     //       ...data,
     //       date: new Date(data.date),
-    //       availableSpots: this.availableSpotsPitesti - data.attendees,
+    //       availableSpots: this.availableSpotsPitesti - data.attendeeCount,
     //     };
     //   }),
     //   catchError((error) => {
@@ -91,10 +97,11 @@ export class EventService {
     // );
 
     let def: Event = {
-      date: new Date('2025-04-30T20:00:00'),
       location: 'pitesti',
-      availableSpots: this.availableSpotsPitesti - 15,
+      date: new Date('2025-04-30T19:00:00.000Z'),
+      availableSpots: 97,
     };
+
     return of(def);
   }
 
