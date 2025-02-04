@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ContactComponent } from '../contact/contact.component';
 import { CountdownComponent } from '../countdown/countdown.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -22,14 +23,15 @@ import { CountdownComponent } from '../countdown/countdown.component';
 })
 export class HomeComponent implements OnInit {
   city: string = '';
-  event: Event;
+  event$: BehaviorSubject<Event>;
 
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
     private router: Router
   ) {
-    this.event = this.eventService.defaultEvent;
+    this.event$ = new BehaviorSubject<Event>(this.eventService.defaultEvent);
+    // this.event = this.eventService.defaultEvent;
   }
 
   ngOnInit() {
@@ -38,13 +40,16 @@ export class HomeComponent implements OnInit {
       console.log('City:', this.city);
 
       if (this.city === 'bucuresti') {
-        this.event = this.eventService.getBucurestiEvent();
+        // this.event = this.eventService.getBucurestiEvent();
       } else {
         this.router.navigate(['/home/pitesti']);
         // this.event = this.eventService.getPitestiEvent();
-        this.eventService.getPitestiEvent().subscribe((event) => { 
-          console.log("🚀 ~ HomeComponent ~ this.eventService.getPitestiEvent ~ event:", event)
-          this.event = event;
+        this.eventService.getPitestiEvent().subscribe((event) => {
+          console.log(
+            '🚀 ~ HomeComponent ~ this.eventService.getPitestiEvent ~ event:',
+            event
+          );
+          this.event$.next(event);
         });
       }
     });

@@ -1,16 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { api } from '../../environments/environment';
-import { catchError, of, tap } from 'rxjs';
+import { catchError, map, of, tap } from 'rxjs';
 export interface Event {
-  id: string;
-  title: string;
-  date: Date;
-  location: string;
-  details: string;
-  cost: number;
-  availableSpots: number;
-  imageUrl: string;
+  id?: string;
+  title?: string;
+  date: Date | string;
+  location?: string;
+  details?: string;
+  cost?: number;
+  availableSpots?: number;
+  imageUrl?: string;
+  attendees?: number;
 }
 
 export interface EventRegistration {
@@ -27,6 +28,9 @@ export interface EventRegistration {
   providedIn: 'root',
 })
 export class EventService {
+  availableSpotsPitesti = 100;
+  availableSpotsBucuresti = 200;
+
   private events: Event[] = [
     {
       id: '1',
@@ -71,16 +75,27 @@ export class EventService {
     // return this.events[0];
     const url = `${api.getLatestEventUrl}?location=pitesti`;
 
-    console.log("🚀 ~ EventService ~ getPitestiEvent ~ url:", url)
-    return this.http.get<Event>(url).pipe(
-      tap((data) =>
-        console.log('🚀 ~ EventService ~ getLatestEvent ~ data:', data)
-      ),
-      catchError((error) => {
-        console.error('Error fetching the latest event:', error);
-        return of(this.defaultEvent);
-      })
-    );
+    console.log('🚀 ~ EventService ~ getPitestiEvent ~ url:', url);
+    // return this.http.get<Event>(url).pipe(
+    //   map((data) => {
+    //     return {
+    //       ...data,
+    //       date: new Date(data.date),
+    //       availableSpots: this.availableSpotsPitesti - data.attendees,
+    //     };
+    //   }),
+    //   catchError((error) => {
+    //     console.error('Error fetching the latest event:', error);
+    //     return of(this.defaultEvent);
+    //   })
+    // );
+
+    let def: Event = {
+      date: new Date('2025-04-30T20:00:00'),
+      location: 'pitesti',
+      availableSpots: this.availableSpotsPitesti - 15,
+    };
+    return of(def);
   }
 
   getBucurestiEvent(): Event {

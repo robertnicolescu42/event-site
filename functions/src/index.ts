@@ -72,3 +72,14 @@ export const getLatestEvent = functions.https.onRequest(async (req, res) => {
     }
   });
 });
+
+/* the next method should take an object that has
+ * email, name, phone (optional), message (optional), newsletter (boolean - optional)
+ * and do the following: 1. add the object to the users collection (if it doesn't exist - match name & mail)
+ * 2. increase the counter of the event that the user is registering to (in the events collection)
+ * 3. in case the user has the newsletter flag set to true, add the user to the newsletter collection (if he's not already there)
+ *
+ *
+ *
+ *
+ */
