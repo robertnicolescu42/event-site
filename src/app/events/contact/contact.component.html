@@ -42,16 +42,16 @@
             >Regulamentului GDPR</a
           >
         </mat-checkbox>
-        <div
+        <span
           *ngIf="
             contactForm.get('gdpr')?.invalid && contactForm.get('gdpr')?.touched
           "
           class="error"
         >
-          <span>
+          <small>
             Trebuie să acceptați termenii GDPR pentru a trimite formularul.
-          </span>
-        </div>
+          </small>
+        </span>
         
         <!-- Checkbox evenimente viitoare -->
         <mat-checkbox formControlName="newsletter">
