@@ -97,6 +97,7 @@ export class EventService {
     // );
 
     let def: Event = {
+      id: 'eventId',
       location: 'pitesti',
       date: new Date('2025-04-30T19:00:00.000Z'),
       availableSpots: 97,

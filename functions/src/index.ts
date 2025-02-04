@@ -79,3 +79,62 @@ export const getLatestEvent = functions.https.onRequest(async (req, res) => {
     }
   });
 });
+
+export const registerForEvent = functions.https.onRequest(async (req, res) => {
+  corsHandler(req, res, async () => {
+    // maybe autogenerate an ID instead of using the email
+    try {
+      if (req.method !== 'POST') {
+        res.status(405).json({ error: 'Method Not Allowed' });
+        return;
+      }
+
+      const { eventId, name, email, phone, message, newsletter } = req.body;
+
+      if (!eventId || !name || !email) {
+        res
+          .status(400)
+          .json({ error: 'eventId, name, and email are required' });
+        return;
+      }
+
+      const userRef = db.collection('users').doc(email);
+      const userSnapshot = await userRef.get();
+
+      if (!userSnapshot.exists) {
+        await userRef.set({
+          name,
+          email,
+          phone: phone || null,
+          newsletter: newsletter || false,
+        });
+      }
+
+      if (newsletter) {
+        const newsletterRef = db.collection('newsletter').doc(email);
+        const newsletterSnapshot = await newsletterRef.get();
+
+        if (!newsletterSnapshot.exists) {
+          await newsletterRef.set({ name, email });
+        }
+      }
+
+      const attendeeRef = db
+        .collection(`events/${eventId}/attendees`)
+        .doc(email);
+      await attendeeRef.set({
+        name,
+        email,
+        phone: phone || null,
+        message: message || null,
+      });
+
+      res
+        .status(200)
+        .json({ message: 'User successfully registered for the event' });
+    } catch (error) {
+      console.error('Error registering for event:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+});
