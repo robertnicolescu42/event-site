@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { api } from '../../environments/environment';
+import { catchError, of, tap } from 'rxjs';
 export interface Event {
   id: string;
   title: string;
@@ -9,6 +11,16 @@ export interface Event {
   cost: number;
   availableSpots: number;
   imageUrl: string;
+}
+
+export interface EventRegistration {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  message?: string;
+  gdpr: boolean;
+  newsletter?: boolean;
 }
 
 @Injectable({
@@ -49,15 +61,33 @@ export class EventService {
     imageUrl: 'assets/event1.jpg',
   };
 
+  constructor(private http: HttpClient) {}
+
   getUpcomingEvent(): Event {
     return this.events[0];
   }
 
-  getPitestiEvent(): Event {
-    return this.events[0];
+  getPitestiEvent() {
+    // return this.events[0];
+    const url = `${api.getLatestEventUrl}?location=pitesti`;
+
+    console.log("🚀 ~ EventService ~ getPitestiEvent ~ url:", url)
+    return this.http.get<Event>(url).pipe(
+      tap((data) =>
+        console.log('🚀 ~ EventService ~ getLatestEvent ~ data:', data)
+      ),
+      catchError((error) => {
+        console.error('Error fetching the latest event:', error);
+        return of(this.defaultEvent);
+      })
+    );
   }
 
   getBucurestiEvent(): Event {
     return this.events[1];
+  }
+
+  submitRegistration(registration: EventRegistration): void {
+    console.log('Registration submitted:', registration);
   }
 }

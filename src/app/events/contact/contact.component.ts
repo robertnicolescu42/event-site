@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { EventService } from '../../core/event.service';
 
 @Component({
   selector: 'app-contact',
@@ -28,8 +29,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 })
 export class ContactComponent {
   contactForm: FormGroup;
+  @Input() event: Event;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private eventService: EventService) {
     this.contactForm = this.fb.group({
       name: [
         '',
@@ -41,7 +43,6 @@ export class ContactComponent {
       ],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.pattern('^[0-9]{10}$')],
-      gender: [''],
       message: [''],
       gdpr: [false, Validators.requiredTrue],
       newsletter: [false],
@@ -50,6 +51,7 @@ export class ContactComponent {
 
   onSubmit() {
     if (this.contactForm.valid) {
+      this.eventService.submitRegistration(this.contactForm.value);
       console.log('Form Submitted:', this.contactForm.value);
     } else {
       console.log('Form is not valid');

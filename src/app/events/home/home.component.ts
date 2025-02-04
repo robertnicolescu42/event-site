@@ -41,7 +41,11 @@ export class HomeComponent implements OnInit {
         this.event = this.eventService.getBucurestiEvent();
       } else {
         this.router.navigate(['/home/pitesti']);
-        this.event = this.eventService.getPitestiEvent();
+        // this.event = this.eventService.getPitestiEvent();
+        this.eventService.getPitestiEvent().subscribe((event) => { 
+          console.log("🚀 ~ HomeComponent ~ this.eventService.getPitestiEvent ~ event:", event)
+          this.event = event;
+        });
       }
     });
   }
