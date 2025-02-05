@@ -1,16 +1,18 @@
-<div *ngIf="event$ | async as event">
+<div *ngIf="event$ | async as event; else loading">
   <div class="container">
     <div class="event-card">
       <mat-card>
         <mat-card-header>
           <mat-card-title>
             <div class="mat-display-4">
-              {{ event.title }}
+              {{ event.date | date : "fullDate" }}
             </div>
           </mat-card-title>
-          <mat-card-subtitle>{{
+          <!-- <mat-card-subtitle>
+            {{
             event.date | date : "fullDate"
-          }}</mat-card-subtitle>
+          }}
+        </mat-card-subtitle> -->
         </mat-card-header>
         <!-- <img
         mat-card-image
@@ -24,7 +26,8 @@
           <!-- <p><strong>Cost:</strong> {{ event.cost }} RON</p> -->
           <p><strong>Cost:</strong> 60 RON</p>
           <p>
-            <strong>Locuri disponibile:</strong> {{ event.availableSpots }} /
+            <strong>Locuri disponibile:</strong>
+            {{ event.availableSpots > 0 ? event.availableSpots : 0 }} /
             {{
               event.location === "pitesti"
                 ? eventService.availableSpotsPitesti
@@ -32,15 +35,37 @@
             }}
           </p>
         </mat-card-content>
-        <mat-card-actions>
-          <button mat-button color="primary" routerLink="/contact">
-            Înscriere
-          </button>
-        </mat-card-actions>
       </mat-card>
-      <app-contact class="contact-card"></app-contact>
-      <!-- {{ event | json }} -->
+      <div *ngIf="event.availableSpots > 0; else soldOut">
+        <app-contact class="contact-card"></app-contact>
+      </div>
+      {{ event | json }}
       <app-countdown [targetDate]="event.date"></app-countdown>
     </div>
   </div>
 </div>
+
+<ng-template #soldOut>
+  <div>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <div class="mat-display-4">Nu mai sunt locuri!</div>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Din păcate, toate locurile pentru acest eveniment au fost ocupate. Vă
+          rugăm să reveniți în zilele următoare pentru a vă înscrie la următorul
+          eveniment.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <div class="container">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

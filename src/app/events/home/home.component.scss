@@ -1,12 +1,39 @@
 .container {
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .event-card {
   width: 100%;
   max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+mat-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+mat-card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+
+mat-card-subtitle {
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.event-image {
+  border-radius: 8px;
+  object-fit: cover;
+  width: 100%;
+  max-height: 400px;
 }
 
 .contact-card {

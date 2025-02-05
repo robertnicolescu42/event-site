@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, LOCALE_ID } from '@angular/core';
 import { EventService, Event } from '../../core/event.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,6 +7,10 @@ import { CommonModule } from '@angular/common';
 import { ContactComponent } from '../contact/contact.component';
 import { CountdownComponent } from '../countdown/countdown.component';
 import { BehaviorSubject } from 'rxjs';
+import { registerLocaleData } from '@angular/common';
+import localeRo from '@angular/common/locales/ro';
+
+registerLocaleData(localeRo);
 
 @Component({
   selector: 'app-home',
@@ -20,6 +24,7 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
+  providers: [{ provide: LOCALE_ID, useValue: 'ro-RO' }],
 })
 export class HomeComponent implements OnInit {
   city: string = '';
@@ -30,7 +35,7 @@ export class HomeComponent implements OnInit {
     private eventService: EventService,
     private router: Router
   ) {
-    this.event$ = new BehaviorSubject<Event>(this.eventService.defaultEvent);
+    this.event$ = new BehaviorSubject<Event | null>(null);
     // this.event = this.eventService.defaultEvent;
   }
 

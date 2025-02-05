@@ -38,26 +38,26 @@ export class EventService {
   availableSpotsBucuresti = 200;
 
   private events: Event[] = [
-    {
-      id: '1',
-      title: 'Petrecerea 1',
-      date: new Date('2025-01-30T20:00:00'),
-      location: 'Pitesti, Club XYZ',
-      details: 'O petrecere pentru socializare și distracție!',
-      cost: 50,
-      availableSpots: 100,
-      imageUrl: 'assets/event1.jpg',
-    },
-    {
-      id: '2',
-      title: 'Petrecerea 2',
-      date: new Date('2025-01-26T13:00:00'),
-      location: 'Bucuresti, Club ABC',
-      details: 'O petrecere pentru socializare și distracție!',
-      cost: 50,
-      availableSpots: 100,
-      imageUrl: 'assets/event2.jpg',
-    },
+    // {
+    //   id: '1',
+    //   title: 'Petrecerea 1',
+    //   date: new Date('2025-01-30T20:00:00'),
+    //   location: 'Pitesti, Club XYZ',
+    //   details: 'O petrecere pentru socializare și distracție!',
+    //   cost: 50,
+    //   availableSpots: 100,
+    //   imageUrl: 'assets/event1.jpg',
+    // },
+    // {
+    //   id: '2',
+    //   title: 'Petrecerea 2',
+    //   date: new Date('2025-01-26T13:00:00'),
+    //   location: 'Bucuresti, Club ABC',
+    //   details: 'O petrecere pentru socializare și distracție!',
+    //   cost: 50,
+    //   availableSpots: 100,
+    //   imageUrl: 'assets/event2.jpg',
+    // },
   ];
 
   public defaultEvent: Event = {
@@ -82,28 +82,27 @@ export class EventService {
     const url = `${api.getLatestEventUrl}?location=pitesti`;
 
     console.log('🚀 ~ EventService ~ getPitestiEvent ~ url:', url);
-    // return this.http.get<IncomingEvent>(url).pipe(
-    //   map((data) => {
-    //     return {
-    //       ...data,
-    //       date: new Date(data.date),
-    //       availableSpots: this.availableSpotsPitesti - data.attendeeCount,
-    //     };
-    //   }),
-    //   catchError((error) => {
-    //     console.error('Error fetching the latest event:', error);
-    //     return of(this.defaultEvent);
-    //   })
-    // );
+    return this.http.get<IncomingEvent>(url).pipe(
+      map((data) => {
+        return {
+          ...data,
+          date: new Date(data.date),
+          availableSpots: this.availableSpotsPitesti - data.attendeeCount,
+        };
+      }),
+      catchError((error) => {
+        console.error('Error fetching the latest event:', error);
+        return of(null);
+      })
+    );
 
-    let def: Event = {
-      id: 'eventId',
-      location: 'pitesti',
-      date: new Date('2025-04-30T19:00:00.000Z'),
-      availableSpots: 97,
-    };
-
-    return of(def);
+    // let def: Event = {
+    //   id: 'eventId',
+    //   location: 'pitesti',
+    //   date: new Date('2025-04-30T19:00:00.000Z'),
+    //   availableSpots: 97,
+    // };
+    // return of(def);
   }
 
   getBucurestiEvent(): Event {
