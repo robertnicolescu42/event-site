@@ -41,6 +41,7 @@
         <div *ngIf="event.availableSpots > 0; else soldOut">
           <app-contact class="contact-card" [eventId]="event.id"></app-contact>
         </div>
+        <app-simple-poster [location]="event.location"></app-simple-poster>
       </div>
     </div>
   </div>

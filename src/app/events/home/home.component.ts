@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 import { registerLocaleData } from '@angular/common';
 import localeRo from '@angular/common/locales/ro';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SimplePosterComponent } from '../simple-poster/simple-poster.component';
 
 registerLocaleData(localeRo);
 
@@ -22,6 +23,7 @@ registerLocaleData(localeRo);
     ContactComponent,
     CountdownComponent,
     MatProgressSpinnerModule,
+    SimplePosterComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],

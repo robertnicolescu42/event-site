@@ -33,7 +33,7 @@ export interface EventRegistration {
   providedIn: 'root',
 })
 export class EventService {
-  availableSpotsPitesti = 100;
+  availableSpotsPitesti = 120;
   availableSpotsBucuresti = 200;
 
   private events: Event[] = [
