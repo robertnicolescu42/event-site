@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { EventService } from '../../core/event.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -24,6 +25,7 @@ import { BehaviorSubject } from 'rxjs';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatSnackBarModule,
     CommonModule,
   ],
   templateUrl: './contact.component.html',
@@ -34,7 +36,11 @@ export class ContactComponent {
   @Input() eventId: string;
   hideForm$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private fb: FormBuilder, private eventService: EventService) {
+  constructor(
+    private fb: FormBuilder,
+    private eventService: EventService,
+    private snackBar: MatSnackBar
+  ) {
     this.contactForm = this.fb.group({
       name: [
         '',
@@ -65,25 +71,41 @@ export class ContactComponent {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log('🚀 ~ ContactComponent ~ eventId:', this.eventId);
       if (this.eventId) {
-        // strip this.contactForm.value of the gdpr field
-        // and submit the stripped object to the eventService
+        // Remove the gdpr field from the form data
         const { gdpr, ...formToSend } = this.contactForm.value;
-
         this.eventService
           .submitRegistration(formToSend, this.eventId)
-          .subscribe((response) => {
-            if (response === null) {
-              console.log('Registration unsuccessful');
+          .subscribe(
+            (response) => {
+              if (response === null) {
+                this.snackBar.open(
+                  'Eroare la înregistrare. Încearcă din nou.',
+                  'Retry',
+                  { duration: 15000 }
+                );
+              } else {
+                this.snackBar.open('Înregistrare reușită!', 'OK', {
+                  duration: 13000,
+                });
+                this.hideForm$.next(true);
+              }
+            },
+            (error) => {
+              this.snackBar.open(
+                'Eroare la înregistrare. Încearcă din nou.',
+                'Retry',
+                { duration: 15000 }
+              );
             }
-
-            this.hideForm$.next(true);
-          });
+          );
       }
-      console.log('Form Submitted:', this.contactForm.value);
     } else {
-      console.log('Form is not valid');
+      this.snackBar.open(
+        'Formular invalid. Verifică și încearcă din nou.',
+        'OK',
+        { duration: 13000 }
+      );
     }
   }
 
