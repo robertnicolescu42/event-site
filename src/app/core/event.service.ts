@@ -77,10 +77,8 @@ export class EventService {
   }
 
   getPitestiEvent() {
-    // return this.events[0];
     const url = `${api.getLatestEventUrl}?location=pitesti`;
 
-    console.log('🚀 ~ EventService ~ getPitestiEvent ~ url:', url);
     return this.http.get<IncomingEvent>(url).pipe(
       map((data) => {
         return {
@@ -94,21 +92,13 @@ export class EventService {
         return of(null);
       })
     );
-
-    // let def: Event = {
-    //   id: 'l9oxm4qk4kCWlmOPCdjc',
-    //   location: 'pitesti',
-    //   date: new Date('2025-04-30T19:00:00.000Z'),
-    //   availableSpots: 97,
-    // };
-    // return of(def);
   }
 
   getBucurestiEvent(): Event {
     return this.events[1];
   }
 
-  submitRegistration(registration: EventRegistration, eventId: string): void {
+  submitRegistration(registration: EventRegistration, eventId: string) {
     const url = `${api.registerForEventUrl}`;
 
     let requestBody = {
@@ -116,13 +106,11 @@ export class EventService {
       eventId,
     };
 
-    this.http.post(url, requestBody).subscribe(
-      (response) => {
-        console.log('Registration submitted:', response);
-      },
-      (error) => {
-        console.error('Error submitting registration:', error);
-      }
+    return this.http.post(url, requestBody).pipe(
+      catchError((error) => {
+        console.error('Error registering for event:', error);
+        return of(null);
+      })
     );
   }
 }

@@ -40,7 +40,6 @@
         <div *ngIf="event.availableSpots > 0; else soldOut">
           <app-contact class="contact-card" [eventId]="event.id"></app-contact>
         </div>
-        {{ event | json }}
         <app-countdown [targetDate]="event.date"></app-countdown>
       </div>
     </div>

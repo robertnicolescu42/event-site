@@ -40,7 +40,6 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {
     this.event$ = new BehaviorSubject<Event | null>(null);
-    // this.event = this.eventService.defaultEvent;
   }
 
   ngOnInit() {
@@ -48,20 +47,16 @@ export class HomeComponent implements OnInit {
       this.city = params.get('city')!;
       console.log('City:', this.city);
 
-      if (this.city === 'bucuresti') {
-        // this.event = this.eventService.getBucurestiEvent();
-      } else {
-        this.router.navigate(['/home/pitesti']);
-        // this.event = this.eventService.getPitestiEvent();
-        this.eventService.getPitestiEvent().subscribe((event) => {
-          console.log(
-            '🚀 ~ HomeComponent ~ this.eventService.getPitestiEvent ~ event:',
-            event
-          );
-          this.event$.next(event);
-          this.loading$.next(false);
-        });
-      }
+      // if (this.city === 'bucuresti') {
+      //   // this.event = this.eventService.getBucurestiEvent();
+      // } else {
+      this.router.navigate(['/home/pitesti']);
+      // this.event = this.eventService.getPitestiEvent();
+      this.eventService.getPitestiEvent().subscribe((event) => {
+        this.event$.next(event);
+        this.loading$.next(false);
+      });
+      // }
     });
   }
 }

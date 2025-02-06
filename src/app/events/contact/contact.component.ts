@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { EventService } from '../../core/event.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
@@ -31,6 +32,7 @@ import { EventService } from '../../core/event.service';
 export class ContactComponent {
   contactForm: FormGroup;
   @Input() eventId: string;
+  hideForm$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private fb: FormBuilder, private eventService: EventService) {
     this.contactForm = this.fb.group({
@@ -69,7 +71,15 @@ export class ContactComponent {
         // and submit the stripped object to the eventService
         const { gdpr, ...formToSend } = this.contactForm.value;
 
-        this.eventService.submitRegistration(formToSend, this.eventId);
+        this.eventService
+          .submitRegistration(formToSend, this.eventId)
+          .subscribe((response) => {
+            if (response === null) {
+              console.log('Registration unsuccessful');
+            }
+
+            this.hideForm$.next(true);
+          });
       }
       console.log('Form Submitted:', this.contactForm.value);
     } else {
