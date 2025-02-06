@@ -21,7 +21,6 @@ export interface IncomingEvent {
 }
 
 export interface EventRegistration {
-  id: string;
   name: string;
   email: string;
   phone?: string;
@@ -97,7 +96,7 @@ export class EventService {
     );
 
     // let def: Event = {
-    //   id: 'eventId',
+    //   id: 'l9oxm4qk4kCWlmOPCdjc',
     //   location: 'pitesti',
     //   date: new Date('2025-04-30T19:00:00.000Z'),
     //   availableSpots: 97,
@@ -109,7 +108,21 @@ export class EventService {
     return this.events[1];
   }
 
-  submitRegistration(registration: EventRegistration): void {
-    console.log('Registration submitted:', registration);
+  submitRegistration(registration: EventRegistration, eventId: string): void {
+    const url = `${api.registerForEventUrl}`;
+
+    let requestBody = {
+      ...registration,
+      eventId,
+    };
+
+    this.http.post(url, requestBody).subscribe(
+      (response) => {
+        console.log('Registration submitted:', response);
+      },
+      (error) => {
+        console.error('Error submitting registration:', error);
+      }
+    );
   }
 }

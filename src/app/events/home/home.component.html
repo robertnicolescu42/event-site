@@ -1,46 +1,48 @@
-<div *ngIf="event$ | async as event; else loading">
-  <div class="container">
-    <div class="event-card">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>
-            <div class="mat-display-4">
-              {{ event.date | date : "fullDate" }}
-            </div>
-          </mat-card-title>
-          <!-- <mat-card-subtitle>
+<div *ngIf="!(loading$ | async); else loading">
+  <div *ngIf="event$ | async as event">
+    <div class="container">
+      <div class="event-card">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              <div class="mat-display-4">
+                {{ event.date | date : "fullDate" }}
+              </div>
+            </mat-card-title>
+            <!-- <mat-card-subtitle>
             {{
             event.date | date : "fullDate"
           }}
         </mat-card-subtitle> -->
-        </mat-card-header>
-        <!-- <img
+          </mat-card-header>
+          <!-- <img
         mat-card-image
         src="https://picsum.photos/500/500"
         alt="Event image"
         class="event-image"
       /> -->
-        <mat-card-content>
-          <p>{{ event.details }}</p>
-          <p><strong>Locație:</strong> {{ event.location }}</p>
-          <!-- <p><strong>Cost:</strong> {{ event.cost }} RON</p> -->
-          <p><strong>Cost:</strong> 60 RON</p>
-          <p>
-            <strong>Locuri disponibile:</strong>
-            {{ event.availableSpots > 0 ? event.availableSpots : 0 }} /
-            {{
-              event.location === "pitesti"
-                ? eventService.availableSpotsPitesti
-                : eventService.availableSpotsBucuresti
-            }}
-          </p>
-        </mat-card-content>
-      </mat-card>
-      <div *ngIf="event.availableSpots > 0; else soldOut">
-        <app-contact class="contact-card"></app-contact>
+          <mat-card-content>
+            <p>{{ event.details }}</p>
+            <p><strong>Locație:</strong> {{ event.location }}</p>
+            <!-- <p><strong>Cost:</strong> {{ event.cost }} RON</p> -->
+            <p><strong>Cost:</strong> 60 RON</p>
+            <p>
+              <strong>Locuri disponibile:</strong>
+              {{ event.availableSpots > 0 ? event.availableSpots : 0 }} /
+              {{
+                event.location === "pitesti"
+                  ? eventService.availableSpotsPitesti
+                  : eventService.availableSpotsBucuresti
+              }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+        <div *ngIf="event.availableSpots > 0; else soldOut">
+          <app-contact class="contact-card" [eventId]="event.id"></app-contact>
+        </div>
+        {{ event | json }}
+        <app-countdown [targetDate]="event.date"></app-countdown>
       </div>
-      {{ event | json }}
-      <app-countdown [targetDate]="event.date"></app-countdown>
     </div>
   </div>
 </div>

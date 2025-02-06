@@ -7,32 +7,44 @@
       <div [formGroup]="contactForm">
         <mat-form-field>
           <input
+            type="text"
             matInput
             required
             placeholder="Nume și Prenume"
             formControlName="name"
+            minlength="4"
+            maxlength="50"
           />
         </mat-form-field>
         <mat-form-field>
           <input
+            type="email"
             matInput
             required
             placeholder="Email"
             formControlName="email"
+            minlength="4"
+            maxlength="50"
           />
         </mat-form-field>
         <mat-form-field>
           <input
+            type="tel"
             matInput
             placeholder="Telefon (optional)"
             formControlName="phone"
+            (keypress)="numbersOnly($event)"
+            minlength="10"
+            maxlength="15"
           />
         </mat-form-field>
         <mat-form-field>
           <input
+            type="text"
             matInput
             placeholder="Mesaj (optional)"
             formControlName="message"
+            maxlength="200"
           />
         </mat-form-field>
         <!-- Checkbox GDPR -->
@@ -48,11 +60,11 @@
           "
           class="error"
         >
-          <small>
+          <!-- <small>
             Trebuie să acceptați termenii GDPR pentru a trimite formularul.
-          </small>
+          </small> -->
         </span>
-        
+
         <!-- Checkbox evenimente viitoare -->
         <mat-checkbox formControlName="newsletter">
           Doresc să fiu informat despre evenimentele viitoare
@@ -60,7 +72,8 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="onSubmit()" [disabled]="!contactForm.valid">
+      <button mat-button (click)="onSubmit()">
+        <!-- [disabled]="!contactForm.valid" -->
         Trimite
       </button>
     </mat-card-actions>

@@ -9,6 +9,7 @@ import { CountdownComponent } from '../countdown/countdown.component';
 import { BehaviorSubject } from 'rxjs';
 import { registerLocaleData } from '@angular/common';
 import localeRo from '@angular/common/locales/ro';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 registerLocaleData(localeRo);
 
@@ -20,6 +21,7 @@ registerLocaleData(localeRo);
     CommonModule,
     ContactComponent,
     CountdownComponent,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
@@ -27,8 +29,10 @@ registerLocaleData(localeRo);
   providers: [{ provide: LOCALE_ID, useValue: 'ro-RO' }],
 })
 export class HomeComponent implements OnInit {
+  // TODO: Fix initial loading
   city: string = '';
   event$: BehaviorSubject<Event>;
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   constructor(
     private route: ActivatedRoute,
@@ -55,6 +59,7 @@ export class HomeComponent implements OnInit {
             event
           );
           this.event$.next(event);
+          this.loading$.next(false);
         });
       }
     });

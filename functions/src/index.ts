@@ -66,13 +66,13 @@ export const getLatestEvent = functions.https.onRequest(async (req, res) => {
 
       const eventDoc = querySnapshot.docs[0];
       const eventData = eventDoc.data();
+      const eventId = eventDoc.id;
 
       const attendeesRef = eventDoc.ref.collection('attendees');
       const countSnapshot = await attendeesRef.count().get();
       const attendeeCount = countSnapshot.data()?.count || 0;
 
-      // Return the event data with the attendee count
-      res.status(200).json({ ...eventData, attendeeCount });
+      res.status(200).json({ id: eventId, ...eventData, attendeeCount });
     } catch (error) {
       console.error('Error fetching event:', error);
       res.status(500).json({ error: 'Internal server error' });
