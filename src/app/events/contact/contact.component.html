@@ -15,6 +15,9 @@
             minlength="4"
             maxlength="50"
           />
+          <mat-error *ngIf="contactForm.get('name')?.invalid">
+            {{ getErrorMessage("name") }}
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input
@@ -26,6 +29,9 @@
             minlength="4"
             maxlength="50"
           />
+          <mat-error *ngIf="contactForm.get('email')?.invalid">
+            {{ getErrorMessage("email") }}
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input
@@ -37,6 +43,9 @@
             minlength="10"
             maxlength="15"
           />
+          <mat-error *ngIf="contactForm.get('phone')?.invalid">
+            {{ getErrorMessage("phone") }}
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input
@@ -46,7 +55,11 @@
             formControlName="message"
             maxlength="200"
           />
+          <mat-error *ngIf="contactForm.get('message')?.invalid">
+            {{ getErrorMessage("message") }}
+          </mat-error>
         </mat-form-field>
+
         <!-- Checkbox GDPR -->
         <mat-checkbox formControlName="gdpr">
           Sunt de acord cu prelucrarea datelor mele personale conform
@@ -54,15 +67,15 @@
             >Regulamentului GDPR</a
           >
         </mat-checkbox>
+        <mat-error *ngIf="contactForm.get('gdpr')?.invalid">
+          Trebuie să acceptați termenii GDPR pentru a trimite formularul.
+        </mat-error>
         <span
           *ngIf="
             contactForm.get('gdpr')?.invalid && contactForm.get('gdpr')?.touched
           "
           class="error"
         >
-          <!-- <small>
-            Trebuie să acceptați termenii GDPR pentru a trimite formularul.
-          </small> -->
         </span>
 
         <!-- Checkbox evenimente viitoare -->
@@ -72,8 +85,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="onSubmit()">
-        <!-- [disabled]="!contactForm.valid" -->
+      <button mat-button (click)="onSubmit()" [disabled]="!contactForm.valid">
         Trimite
       </button>
     </mat-card-actions>
