@@ -18,5 +18,5 @@ import { UnderConstructionComponent } from './core/under-construction/under-cons
 export class AppComponent {
   title = 'event-site';
 
-  isUnderConstruction: boolean = true;
+  isUnderConstruction: boolean = false;
 }
