@@ -27,7 +27,7 @@ admin.initializeApp();
 const db = admin.firestore();
 const allowedLocations = ['pitesti', 'bucuresti'];
 const allowedOrigins = [
-  'https://clubuloamenilorsinguri.web.app/',
+  'https://clubuloamenilorsinguri.web.app',
   'http://localhost:4200',
 ];
 const corsHandler = cors({

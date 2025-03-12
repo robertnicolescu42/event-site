@@ -10,20 +10,20 @@
         </h3>
         <p>
           Vă mulțumim pentru interesul acordat serviciilor și produselor
-          <strong>[NUME_COMPANIE]</strong>. Pentru noi, având în vedere relația
-          specială cu Dvs., este deosebit de important să asigurăm protecția
-          datelor cu caracter personal pe care ni le furnizați. În aceeași
-          măsură Confidențialitatea datelor Dvs. cu caracter personal este
-          extrem de importantă pentru noi.
+          <strong>{{ sensibleData.numeCompanie }} </strong>. Pentru noi, având
+          în vedere relația specială cu Dvs., este deosebit de important să
+          asigurăm protecția datelor cu caracter personal pe care ni le
+          furnizați. În aceeași măsură Confidențialitatea datelor Dvs. cu
+          caracter personal este extrem de importantă pentru noi.
         </p>
 
         <h3>CINE SUNTEM?</h3>
         <p>
-          <strong>[NUME_COMPANIE]</strong> este o societate organizată și care
-          funcționează în conformitate cu legile din România, cu sediul în
-          <strong>[ADRESA]</strong>, înregistrată la ORC sub nr.
-          <strong>[NUMAR_INREGISTRARE]</strong>, având CUI
-          <strong>[CUI]</strong>.
+          <strong>{{ sensibleData.numeCompanie }} </strong> este o societate
+          organizată și care funcționează în conformitate cu legile din România,
+          cu sediul în <strong>{{ sensibleData.adresaCompanie }} </strong>,
+          înregistrată la ORC sub nr. <strong>{{ sensibleData.numarInregistrare}} </strong>,
+          având CUI <strong>{{ sensibleData.CUI}} </strong>.
         </p>
 
         <h3>CE DATE PRELUCRĂM?</h3>
@@ -65,12 +65,13 @@
           numit în cele ce urmează Regulament/ul).
         </p>
         <p>
-          Situațiile în care <strong>[NUME_COMPANIE]</strong> va colecta și
+          Situațiile în care
+          <strong>{{ sensibleData.numeCompanie }} </strong> va colecta și
           prelucra datele Dvs. cu caracter personal și scopurile în vederea
           cărora aceste date vor fi prelucrate, sunt următoarele:
         </p>
         <ul>
-          <li>Înregistrare cont pe site-ul <strong>[URL_SITE]</strong></li>
+          <li>Înregistrare cont pe site-ul <strong>{{ sensibleData.urlSite}} </strong></li>
           <li>Înregistrare la evenimente (gratuite sau contra-cost)</li>
           <li>Abonare la Newsletter</li>
         </ul>
@@ -129,61 +130,67 @@
         <ul>
           <li>
             dreptul de acces la date - aveți dreptul de a obține din partea
-            [NUME_COMPANIE] o confirmare că se prelucrează sau nu date cu
-            caracter personal care vă privesc, precum și acces la datele
-            respective; totodată, puteți obține o copie a datelor cu caracter
-            personal furnizate societății noastre și care fac obiectul
+            {{ sensibleData.numeCompanie }} o confirmare că se prelucrează sau
+            nu date cu caracter personal care vă privesc, precum și acces la
+            datele respective; totodată, puteți obține o copie a datelor cu
+            caracter personal furnizate societății noastre și care fac obiectul
             prelucrării; pentru orice alte copii solicitate de Dvs.,
-            [NUME_COMPANIE] poate percepe o taxă rezonabilă, bazată pe costurile
-            administrative; în cazul în care introduceți cererea în format
-            electronic și cu excepția cazului în care solicitați un alt format,
-            informațiile vă vor fi furnizate într-un format electronic utilizat
-            în mod curent;
+            {{ sensibleData.numeCompanie }} poate percepe o taxă rezonabilă,
+            bazată pe costurile administrative; în cazul în care introduceți
+            cererea în format electronic și cu excepția cazului în care
+            solicitați un alt format, informațiile vă vor fi furnizate într-un
+            format electronic utilizat în mod curent;
           </li>
           <li>
             dreptul la rectificare – aveți dreptul de a obține rectificarea de
-            către [NUME_COMPANIE] a datelor cu caracter personal inexacte,
-            precum și dreptul de a obține completarea datelor cu caracter
-            personal care sunt incomplete; [NUME_COMPANIE] va comunica fiecărui
-            destinatar căruia i-au fost divulgate datele cu caracter personal
-            orice rectificare a acestora, cu excepția cazului în care acest
-            lucru se dovedește imposibil sau presupune eforturi disproporționate
-            și vă va informa cu privire la acești destinatari, dacă veți
-            solicita acest lucru;
+            către {{ sensibleData.numeCompanie }} a datelor cu caracter personal
+            inexacte, precum și dreptul de a obține completarea datelor cu
+            caracter personal care sunt incomplete;
+            {{ sensibleData.numeCompanie }} va comunica fiecărui destinatar
+            căruia i-au fost divulgate datele cu caracter personal orice
+            rectificare a acestora, cu excepția cazului în care acest lucru se
+            dovedește imposibil sau presupune eforturi disproporționate și vă va
+            informa cu privire la acești destinatari, dacă veți solicita acest
+            lucru;
           </li>
           <li>
             dreptul la ștergerea datelor – aveți dreptul de a obține din partea
-            [NUME_COMPANIE] ștergerea datelor cu caracter personal care vă
-            privesc, fără întârzieri nejustificate, iar [NUME_COMPANIE] are
-            obligația de a șterge datele respective, atunci când: (i) datele cu
-            caracter personal nu mai sunt necesare pentru îndeplinirea
-            scopurilor pentru care au fost colectate sau prelucrate; (ii) vă
-            retrageți consimțământul pe baza căruia are loc prelucrarea și nu
-            există niciun alt temei juridic pentru prelucrare; (iii) vă opuneți
-            prelucrării și nu există motive legitime care să prevaleze în ceea
-            ce privește prelucrarea; (iv) datele cu caracter personal au fost
-            prelucrate ilegal; (v) datele cu caracter personal trebuie șterse
-            pentru respectarea unei obligații legale ce revine [NUME_COMPANIE]
+            {{ sensibleData.numeCompanie }} ștergerea datelor cu caracter
+            personal care vă privesc, fără întârzieri nejustificate, iar
+            {{ sensibleData.numeCompanie }} are obligația de a șterge datele
+            respective, atunci când: (i) datele cu caracter personal nu mai sunt
+            necesare pentru îndeplinirea scopurilor pentru care au fost
+            colectate sau prelucrate; (ii) vă retrageți consimțământul pe baza
+            căruia are loc prelucrarea și nu există niciun alt temei juridic
+            pentru prelucrare; (iii) vă opuneți prelucrării și nu există motive
+            legitime care să prevaleze în ceea ce privește prelucrarea; (iv)
+            datele cu caracter personal au fost prelucrate ilegal; (v) datele cu
+            caracter personal trebuie șterse pentru respectarea unei obligații
+            legale ce revine {{ sensibleData.numeCompanie }}
             în temeiul dreptului Uniunii sau al legislației române;
-            [NUME_COMPANIE] va comunica fiecărui destinatar căruia i-au fost
-            divulgate datele cu caracter personal orice ștergere a acestora, cu
-            excepția cazului în care acest lucru se dovedește imposibil sau
-            presupune eforturi disproporționate și vă va informa cu privire la
-            acești destinatari, dacă veți solicita acest lucru;
+            {{ sensibleData.numeCompanie }} va comunica fiecărui destinatar
+            căruia i-au fost divulgate datele cu caracter personal orice
+            ștergere a acestora, cu excepția cazului în care acest lucru se
+            dovedește imposibil sau presupune eforturi disproporționate și vă va
+            informa cu privire la acești destinatari, dacă veți solicita acest
+            lucru;
           </li>
           <li>
             dreptul la restricționarea prelucrării – aveți dreptul de a obține
-            din partea [NUME_COMPANIE] restricționarea prelucrării în cazul în
-            care vă aflați într-unul din următoarele cazuri: (i) contestați
-            exactitatea datelor, pentru perioada care îi permite [NUME_COMPANIE]
-            să verifice exactitatea datelor; (ii) prelucrarea este ilegală, iar
-            Dvs. vă opuneți ștergerii datelor cu caracter personal, solicitând
-            în schimb restricționarea utilizării lor; (iii) [NUME_COMPANIE] nu
-            mai are nevoie de datele cu caracter personal în scopul prelucrarii,
-            dar Dvs. le solicitați pentru constatarea, exercitarea sau apărarea
-            unui drept în instanță; sau (iv) v-ați opus prelucrării pentru
-            intervalul de timp în care se verifică dacă drepturile legitime ale
-            [NUME_COMPANIE] prevalează asupra drepturilor Dvs.; [NUME_COMPANIE]
+            din partea {{ sensibleData.numeCompanie }} restricționarea
+            prelucrării în cazul în care vă aflați într-unul din următoarele
+            cazuri: (i) contestați exactitatea datelor, pentru perioada care îi
+            permite {{ sensibleData.numeCompanie }} să verifice exactitatea
+            datelor; (ii) prelucrarea este ilegală, iar Dvs. vă opuneți
+            ștergerii datelor cu caracter personal, solicitând în schimb
+            restricționarea utilizării lor; (iii)
+            {{ sensibleData.numeCompanie }} nu mai are nevoie de datele cu
+            caracter personal în scopul prelucrarii, dar Dvs. le solicitați
+            pentru constatarea, exercitarea sau apărarea unui drept în instanță;
+            sau (iv) v-ați opus prelucrării pentru intervalul de timp în care se
+            verifică dacă drepturile legitime ale
+            {{ sensibleData.numeCompanie }} prevalează asupra drepturilor Dvs.;
+            {{ sensibleData.numeCompanie }}
             va comunica fiecărui destinatar căruia i-au fost divulgate datele cu
             caracter personal orice restricționare a prelucrării, cu excepția
             cazului în care acest lucru se dovedește imposibil sau presupune
@@ -193,12 +200,13 @@
           <li>
             dreptul la portabilitatea datelor – aveți dreptul de a primi datele
             Dvs. cu caracter personal, astfel cum acestea au fost furnizate
-            către [NUME_COMPANIE], într-un format structurat, utilizat în mod
-            curent și care poate fi citit automat și de a transmite aceste date
-            altui operator, în anumite condiții; în exercitarea acestui drept,
-            aveți dreptul ca datele cu caracter personal să fie transmise direct
-            de la [NUME_COMPANIE] la alt operator atunci când acest lucru este
-            fezabil din punct de vedere tehnic;
+            către {{ sensibleData.numeCompanie }} , într-un format structurat,
+            utilizat în mod curent și care poate fi citit automat și de a
+            transmite aceste date altui operator, în anumite condiții; în
+            exercitarea acestui drept, aveți dreptul ca datele cu caracter
+            personal să fie transmise direct de la
+            {{ sensibleData.numeCompanie }} la alt operator atunci când acest
+            lucru este fezabil din punct de vedere tehnic;
           </li>
           <li>
             dreptul la opoziție – aveți dreptul de a vă opune, din motive legate
@@ -217,8 +225,8 @@
           <li>
             dreptul de a vă retrage consimțământul în orice moment, fără a
             afecta legalitatea prelucrării datelor cu caracter personal
-            efectuate de [NUME_COMPANIE] pe baza consimțământului înainte de
-            retragerea acestuia.
+            efectuate de {{ sensibleData.numeCompanie }} pe baza
+            consimțământului înainte de retragerea acestuia.
           </li>
         </ul>
         <h3>CUM AVEȚI ACCES LA DATELE DVS.?</h3>
@@ -226,26 +234,27 @@
           Pentru orice întrebări sau cereri referitoare la datele cu caracter
           personal pe care ni le-ați transmis, inclusiv în vederea exercitării
           drepturilor pe care le aveți, astfel cum sunt acestea menționate în
-          cadrul secțiunii anterioare, ne puteți contacta la adresa: [ADRESA].
-          [NUME_COMPANIE]. vă va furniza informațiile solicitate în format
-          electronic atunci când este posibil, cu excepția cazului în care
-          solicitați un alt format. Informațiile furnizate, precum și orice
-          comunicare și măsuri luate în exercitarea de către Dvs. a drepturilor
-          de mai sus sunt oferite de [NUME_COMPANIE]. gratuit. Cu toate acestea,
-          în cazul în care cererile formulate de Dvs. sunt nefondate sau
-          excesive, în special din cauza caracterului lor repetitiv,
-          [NUME_COMPANIE]. poate: (i) fie să perceapă o taxă, ținând cont de
-          costurile administrative pentru furnizarea informațiilor sau a
-          comunicării sau pentru luarea măsurilor solicitate; (ii) fie să refuze
-          să dea curs cererii. Precizăm faptul că prin acceptarea acestui acord,
-          datele Dvs. personale vor fi prelucrate de [NUME_COMPANIE]., conform
-          prezentei Politici de Prelucrare a Datelor cu Caracter Personal. Vă
-          mulțumim!
+          cadrul secțiunii anterioare, ne puteți contacta la adresa:
+          {{ sensibleData.adresaCompanie }} . {{ sensibleData.numeCompanie }} .
+          vă va furniza informațiile solicitate în format electronic atunci când
+          este posibil, cu excepția cazului în care solicitați un alt format.
+          Informațiile furnizate, precum și orice comunicare și măsuri luate în
+          exercitarea de către Dvs. a drepturilor de mai sus sunt oferite de
+          {{ sensibleData.numeCompanie }} . gratuit. Cu toate acestea, în cazul
+          în care cererile formulate de Dvs. sunt nefondate sau excesive, în
+          special din cauza caracterului lor repetitiv,
+          {{ sensibleData.numeCompanie }} . poate: (i) fie să perceapă o taxă,
+          ținând cont de costurile administrative pentru furnizarea
+          informațiilor sau a comunicării sau pentru luarea măsurilor
+          solicitate; (ii) fie să refuze să dea curs cererii. Precizăm faptul că
+          prin acceptarea acestui acord, datele Dvs. personale vor fi prelucrate
+          de {{ sensibleData.numeCompanie }} ., conform prezentei Politici de
+          Prelucrare a Datelor cu Caracter Personal. Vă mulțumim!
         </p>
         <p>
           Pentru orice solicitări legate de datele personale, vă rugăm să ne
-          contactați la <strong>[EMAIL_CONTACT]</strong> sau la
-          <strong>[TELEFON_CONTACT]</strong>.
+          contactați la <strong>{{ sensibleData.mailContact}} </strong> sau la
+          <strong>{{ sensibleData.telefonContact}} </strong>.
         </p>
       </div>
     </div>
