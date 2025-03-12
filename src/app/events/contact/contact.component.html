@@ -67,9 +67,9 @@
         <!-- Checkbox GDPR -->
         <mat-checkbox formControlName="gdpr">
           Sunt de acord cu prelucrarea datelor mele personale conform
-          <a href="https://gdpr-info.eu/" target="_blank"
-            >Regulamentului GDPR</a
-          >
+          <span class="confidentiality-link">
+            <a (click)="onClickConfidentiality()">Regulamentului GDPR</a>
+          </span>
         </mat-checkbox>
         <mat-error
           *ngIf="contactForm.get('gdpr')?.invalid && contactForm.touched"

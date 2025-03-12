@@ -1,7 +1,14 @@
 .main-content {
-    // center 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50vw;
+  // center
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+}
+
+.big-button {
+  font-size: 1.2rem;
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin: 5px;
 }

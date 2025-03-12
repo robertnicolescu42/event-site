@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { EventService } from '../../core/event.service';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -39,7 +40,8 @@ export class ContactComponent {
   constructor(
     private fb: FormBuilder,
     private eventService: EventService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {
     this.contactForm = this.fb.group({
       name: [
@@ -131,5 +133,12 @@ export class ContactComponent {
     if (control?.hasError('pattern')) return 'Format invalid';
     if (control?.hasError('invalidPhone')) return 'Număr de telefon invalid';
     return '';
+  }
+
+  onClickConfidentiality() {
+    window.open(
+      this.router.serializeUrl(this.router.createUrlTree(['/confidentiality'])),
+      '_blank'
+    );
   }
 }

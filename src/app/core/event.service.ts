@@ -35,6 +35,7 @@ export interface EventRegistration {
 export class EventService {
   availableSpotsPitesti = 120;
   availableSpotsBucuresti = 200;
+  basicPitestiLocation = "Pitești, Restaurant 'Casa Muntenească' (lângă Laguna)";
 
   private events: Event[] = [
     // {

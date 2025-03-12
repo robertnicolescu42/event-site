@@ -23,7 +23,14 @@
       /> -->
           <mat-card-content>
             <p>{{ event.details }}</p>
-            <p><strong>Locație:</strong> {{ event.location }}</p>
+            <p>
+              <strong>Locație:</strong>
+              {{
+                event.location === "pitesti"
+                  ? eventService.basicPitestiLocation
+                  : event.location
+              }}
+            </p>
             <!-- <p><strong>Cost:</strong> {{ event.cost }} RON</p> -->
             <p><strong>Cost:</strong> 60 RON</p>
             <p>
